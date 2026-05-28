@@ -1,58 +1,137 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Where's my ID?",
+    "Credits": "Created by Miya Takahashi (mjtakaha@ucsc.edu).",
+    "InitialLocation": "DormHallway",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "DormHallway": {
+            "Body": "You're standing in the hallway outside your dorm room. You reach for your student ID to swipe in — and your stomach drops. It's gone. You retrace your steps in your head. Where did you last have it?",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
-                }
-            ]
-        },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Head to McHenry Library",
+                    "Target": "McHenry"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
-            ]
-        },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Walk down to the Quarry",
+                    "Target": "Quarry"
+
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
-                }
-            ]
-        },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Text": "Check the bus stop",
+                    "Target": "BusStop"
+  
                 },
                 {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Go inside your room",
+                    "Target": "DormRoom",
+                    "RequiresKey": "roommate_convinced"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "McHenry": {
+            "Body": "The library is quiet except for the hum of AC and the frantic typing of people who are starting to study for midterms. You head upstairs to the study rooms.",
+            "Type": "Memory",
+            "MemoryText": "You remember being here two nights ago with your friends Josh and Kaylie, all three of you cramming for a CS midterm. Josh fell asleep on the keyboard. You were the last one to leave.",
+            "Choices": [
+                {
+                    "Text": "Check under the study room tables",
+                    "Target": "McHenryFloor2"
+                },
+                {
+                    "Text": "Go back toward the dorm",
+                    "Target": "DormHallway"
+                }
+            ]
+        },
+        "McHenryFloor2": {
+            "Body": "You crouch down and look under every chair and table in the room. A forgotten Yerba Mate. Someone's pencil. No ID.",
+            "Choices": [
+                {
+                    "Text": "Head back downstairs",
+                    "Target": "McHenry"
+                },
+                {
+                    "Text": "Give up on the library and go to the Quarry",
+                    "Target": "Quarry"
+                }
+            ]
+        },
+        "Quarry": {
+            "Body": "The Quarry is busy as always. The smell of food trucks drifts past you as students eat lunch on the benches. You scan the ground as you walk. Nothing yet.",
+            "Choices": [
+                {
+                    "Text": "Talk to the cashier in Slug Stop",
+                    "Target": "SlugStop"
+                },
+                {
+                    "Text": "Head to the bus stop",
+                    "Target": "BusStop"
+                },
+                {
+                    "Text": "Go back toward the dorm",
+                    "Target": "DormHallway"
+                    
+                }
+            ]
+        },
+        "SlugStop": {
+            "Body": "The barista shakes their head. 'No lost cards here, sorry.' Then they pause. 'Actually — your roommate was just here like ten minutes ago. Said they were heading to the bus stop.'",
+            "Type": "NPC",
+            "NPCName": "Slug Stop Cashier",
+            "NPCMessages": [
+                "No lost cards here, sorry.",
+                "Actually your roommate was just here. Said they were heading to the bus stop."
+            ],
+            "Choices": [
+                {
+                    "Text": "Run to the bus stop",
+                    "Target": "BusStop"
+                }, 
+                {
+                    "Text": "Wander back through the Quarry",
+                    "Target": "Quarry"
+                }   
+            ]
+        },
+        "BusStop": {
+            "Body": "The 19 is idling at the stop, doors open. You're scanning faces — and then you see them. Your roommate, headphones in, waiting to board.",
+            "Type": "RoommateEncounter",
+            "Choices": [
+                {
+                    "Text": "Frantically explain the whole situation",
+                    "Target": "RoommateChat",
+                    "ConvinceStyle": "desperate"
+                },
+                {
+                    "Text": "Calmly ask if they can let you into the room",
+                    "Target": "RoommateChat",
+                    "ConvinceStyle": "calm"
+                }
+            ]
+        },
+        "RoommateChat": {
+            "Body": "Your roommate listens. There's a pause.",
+            "Type": "RoommateConvince",
+            "Choices": [
+                {
+                    "Text": "Walk back to the dorm together",
+                    "Target": "DormRoom",
+                    "GrantsKey": "roomate_convinced"
+                }
+            ]
+        },
+        "DormRoom": {
+            "Body": "Finally inside. You search everywhere — desk, floor, under the bed, inside your hoodie pocket. And then, stuck between the edge of your twin XL — there it is. Your student ID.",
+            "Type": "Ending",
+            "Choices": [
+                {
+                    "Text": "Sprint to the dining hall",
+                    "Target": "DiningHall"
+                }
+            ]
+        },
+        "DiningHall": {
+            "Body": "You swipe in just in time for the lunch rush. You grab your food and sit down, relieved.",
+            "Type": "Final"
         }
     }
 }
